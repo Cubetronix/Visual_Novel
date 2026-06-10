@@ -1,0 +1,6 @@
+{
+  "name": "Steins;Gate: Divergence Line",
+  "description": "Visual Novel interaktif bertema Steins;Gate dengan sistem Phone Trigger, save/load, pencapaian (achievements), dan multi-ending. Selamatkan masa depan atau terjebak dalam garis dunia yang salah.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
