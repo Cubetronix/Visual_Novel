@@ -106,8 +106,10 @@ export default function NovelScreen({
     // Standard character-by-character typing interval
     const speed = 22; // ms per letters
     typingTimerRef.current = setInterval(() => {
-      setDisplayedText(prev => prev + textTarget.charAt(charIndex));
-      charIndex++;
+      if (charIndex < textTarget.length) {
+        setDisplayedText(textTarget.substring(0, charIndex + 1));
+        charIndex++;
+      }
 
       if (charIndex >= textTarget.length) {
         clearInterval(typingTimerRef.current);

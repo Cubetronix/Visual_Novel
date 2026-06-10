@@ -44,15 +44,15 @@ export default function CharacterAsset({
         <circle cx="200" cy="220" r="140" fill="none" stroke="#2563eb" strokeWidth="2" strokeDasharray="6,6" className="opacity-20 animate-[spin_40s_linear_infinite]" />
         
         {/* Lab Coat / Body */}
-        <path d="M 100,500 L 100,420 L 120,380 L 170,350 L 230,350 L 280,380 L 300,420 L 300,500 Z" fill="url(#okabeGrad)" />
+        <path d="M 100,500 L 100,410 L 120,370 L 170,335 L 230,335 L 280,370 L 300,410 L 300,500 Z" fill="url(#okabeGrad)" />
         {/* White Lab Coat Lapels */}
-        <path d="M 120,380 L 160,390 L 170,500 L 100,500 Z" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="2" />
-        <path d="M 280,380 L 240,390 L 230,500 L 300,500 Z" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="2" />
+        <path d="M 120,370 L 160,380 L 170,500 L 100,500 Z" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="2" />
+        <path d="M 280,370 L 240,380 L 230,500 L 300,500 Z" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="2" />
         {/* Inner Shirt (Slate Blue) */}
-        <path d="M 160,390 L 200,450 L 240,390 L 200,350 Z" fill="#334155" />
+        <path d="M 160,380 L 200,440 L 240,380 L 200,335 Z" fill="#334155" />
         
-        {/* Neck */}
-        <path d="M 175,350 L 175,270 L 225,270 L 225,350 Z" fill="url(#skinOkabe)" />
+        {/* Neck (Shortened, tapered, and aligned seamlessly under the chin) */}
+        <path d="M 177,340 L 183,230 L 217,230 L 223,340 Z" fill="url(#skinOkabe)" />
 
         {/* Head Base */}
         <path d="M 140,190 C 140,290 260,290 260,190 C 260,130 140,130 140,190 Z" fill="url(#skinOkabe)" />
@@ -156,17 +156,20 @@ export default function CharacterAsset({
         {/* Ambient background ring glow */}
         <circle cx="200" cy="220" r="140" fill="none" stroke="#ea580c" strokeWidth="2" strokeDasharray="4,4" className="opacity-20 animate-[spin_30s_linear_infinite]" />
 
-        {/* Hair - Back Flow */}
-        <path d="M 110,200 C 70,300 90,480 100,500 L 300,500 C 310,480 330,300 290,200 Z" fill="url(#kurisuHair)" />
+        {/* --- KURISU HAIR - BACKFLOW (More dynamic and voluminous back hair) --- */}
+        <path d="M 110,200 C 70,280 80,420 95,500 L 305,500 C 320,420 330,280 290,200 C 270,250 250,280 200,280 C 150,280 130,250 110,200 Z" fill="url(#kurisuHair)" />
+        {/* Back Hair extra locks on shoulders */}
+        <path d="M 95,320 Q 75,410 85,500 Q 110,480 115,410 Z" fill="#5c1d0a" />
+        <path d="M 305,320 Q 325,410 315,500 Q 290,480 285,410 Z" fill="#5c1d0a" />
 
-        {/* Body & Beige Cardigan */}
-        <path d="M 110,500 L 110,410 L 130,375 L 270,375 L 290,410 L 290,500 Z" fill="url(#kurisuJacket)" />
+        {/* Body & Beige Cardigan (Jacket raised to shorten the neck line) */}
+        <path d="M 110,500 L 110,390 L 130,340 L 270,340 L 290,390 L 290,500 Z" fill="url(#kurisuJacket)" />
         {/* White shirt and Red Tie */}
-        <path d="M 170,375 L 200,430 L 230,375 Z" fill="#ffffff" />
-        <path d="M 195,395 L 205,395 L 210,480 L 190,480 Z" fill="#be123c" /> {/* Red Tie */}
+        <path d="M 170,340 L 200,400 L 230,340 Z" fill="#ffffff" />
+        <path d="M 196,360 L 204,360 L 208,445 L 192,445 Z" fill="#be123c" /> {/* Red Tie */}
 
-        {/* Neck */}
-        <path d="M 180,375 L 180,280 L 220,280 L 220,375 Z" fill="url(#skinKurisu)" />
+        {/* Neck (Shortened, tapered, and deeply anchored into the chin to prevent gaps) */}
+        <path d="M 181,345 L 185,230 L 215,230 L 219,345 Z" fill="url(#skinKurisu)" />
 
         {/* Head Base */}
         <path d="M 145,200 C 145,290 255,290 255,200 C 255,145 145,145 145,200 Z" fill="url(#skinKurisu)" />
@@ -246,13 +249,27 @@ export default function CharacterAsset({
           )}
         </g>
 
-        {/* Hair - Elegant bangs framing the face */}
-        <path d="M 140,150 Q 170,120 200,120 Q 230,120 260,150 Q 275,180 265,220 L 255,200 L 250,150 L 150,150 L 145,200 L 135,220 Z" fill="url(#kurisuHair)" />
-        {/* Long side bangs */}
-        <path d="M 145,180 L 155,260 L 160,200 Z" fill="#7c2d12" />
-        <path d="M 255,180 L 245,260 L 240,200 Z" fill="#7c2d12" />
+        {/* --- KURISU HAIR - FRONT SHAPING (Elegant sweeping bangs framing the face) --- */}
+        {/* Main Hair Cap and Top spikes */}
+        <path d="M 135,160 C 130,100 160,80 200,80 C 240,80 270,100 265,160 C 280,120 260,95 240,90 Q 200,70 160,90 C 140,95 120,120 135,160 Z" fill="url(#kurisuHair)" />
+        
+        {/* Forehead Bangs framing the face in Kurisu's 'M' shape */}
+        <path d="M 135,150 Q 170,125 190,165 L 195,150 Q 200,160 210,165 Q 230,125 265,150 Q 255,180 248,190 L 244,170 Q 200,145 156,170 L 152,190 Q 145,180 135,150 Z" fill="url(#kurisuHair)" />
+        
+        {/* Dynamic sweeping front spikes */}
+        <path d="M 175,135 L 188,175 L 192,150 L 200,185 L 208,150 L 212,175 L 225,135 Z" fill="#5c1d0a" />
+
+        {/* Kurisu's long elegant side locks enclosing the cheeks and neck */}
+        {/* Left Lock */}
+        <path d="M 140,160 Q 148,220 156,290 Q 163,220 154,180 Z" fill="url(#kurisuHair)" />
+        <path d="M 148,180 Q 155,240 165,310 Q 170,250 160,200 Z" fill="#5c1d0a" />
+        
+        {/* Right Lock */}
+        <path d="M 260,160 Q 252,220 244,290 Q 237,220 246,180 Z" fill="url(#kurisuHair)" />
+        <path d="M 252,180 Q 245,240 235,310 Q 230,250 240,200 Z" fill="#5c1d0a" />
+
         {/* Center fringe division */}
-        <path d="M 192,120 L 200,165 L 208,120 Z" fill="#451a03" />
+        <path d="M 194,120 L 200,160 L 206,120 Z" fill="#451a03" />
 
       </svg>
     );
@@ -286,13 +303,13 @@ export default function CharacterAsset({
         {/* Fluffy black-blue hair back */}
         <path d="M 120,200 C 90,260 90,340 120,380 L 280,380 C 310,340 310,260 280,200 Z" fill="#0c1a30" />
 
-        {/* Dress / Body */}
-        <path d="M 120,500 L 120,410 L 140,380 L 260,380 L 280,410 L 280,500 Z" fill="url(#mayuriDress)" />
+        {/* Dress / Body (Raised slightly to match shorter proportional neck) */}
+        <path d="M 120,500 L 120,395 L 140,360 L 260,360 L 280,395 L 280,500 Z" fill="url(#mayuriDress)" />
         {/* Soft white collar */}
-        <path d="M 170,380 C 170,410 230,410 230,380 Z" fill="#f8fafc" />
+        <path d="M 170,360 C 170,390 230,390 230,360 Z" fill="#f8fafc" />
 
-        {/* Neck */}
-        <path d="M 185,380 L 185,290 L 215,290 L 215,380 Z" fill="url(#skinMayuri)" />
+        {/* Neck (Shortened and tapered) */}
+        <path d="M 183,365 L 187,230 L 213,230 L 217,365 Z" fill="url(#skinMayuri)" />
 
         {/* Head Base */}
         <path d="M 150,210 C 150,295 250,295 250,210 C 250,165 150,165 150,210 Z" fill="url(#skinMayuri)" />
@@ -374,11 +391,11 @@ export default function CharacterAsset({
         {/* Ambient background ring glow */}
         <circle cx="200" cy="220" r="140" fill="none" stroke="#ca8a04" strokeWidth="2" strokeDasharray="3,6" className="opacity-20 animate-[spin_35s_linear_infinite]" />
 
-        {/* Big Broad Shoulders */}
-        <path d="M 60,500 L 60,400 L 90,340 C 150,320 250,320 310,340 L 340,400 L 340,500 Z" fill="url(#daruShirt)" />
+        {/* Big Broad Shoulders (Adjusted position to match shorter neck) */}
+        <path d="M 60,500 L 60,390 L 90,325 C 150,305 250,305 310,325 L 340,390 L 340,500 Z" fill="url(#daruShirt)" />
 
-        {/* Broad Neck */}
-        <path d="M 160,340 L 160,260 L 240,260 L 240,340 Z" fill="url(#skinDaru)" />
+        {/* Broad Neck (Shortened and tapered) */}
+        <path d="M 164,330 L 170,240 L 230,240 L 236,330 Z" fill="url(#skinDaru)" />
 
         {/* Fat friendly round Head */}
         <path d="M 130,210 C 130,310 270,310 270,210 C 270,160 130,160 130,210 Z" fill="url(#skinDaru)" />
