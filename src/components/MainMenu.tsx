@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Play, FolderOpen, Award, BookOpen, Volume2, VolumeX, ShieldAlert, Zap, Compass, Skull, Heart, Star } from "lucide-react";
-import { INITIAL_ACHIEVEMENTS, storyData } from "../data/story";
+import { INITIAL_ACHIEVEMENTS } from "../data/story";
 import { gameAudio } from "./AudioEngine";
 
 interface MainMenuProps {
