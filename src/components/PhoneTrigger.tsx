@@ -58,15 +58,15 @@ export default function PhoneTrigger({
       <button
         id="phone_trigger_button"
         onClick={onToggleOpen}
-        className="fixed bottom-24 right-6 z-40 flex items-center gap-2 px-5 py-3.5 bg-red-950/80 hover:bg-red-900/80 text-white font-mono text-xs font-bold rounded-sm shadow-[0_0_15px_rgba(239,68,68,0.25)] border-2 border-red-800 animate-pulse transition duration-200 uppercase tracking-widest cursor-pointer"
+        className="fixed top-20 sm:top-auto sm:bottom-24 right-3 sm:right-6 z-40 flex items-center gap-1.5 px-3 py-2 sm:px-5 sm:py-3.5 bg-red-950/90 hover:bg-red-900/80 text-white font-mono text-[9px] sm:text-xs font-bold rounded-sm shadow-[0_0_15px_rgba(239,68,68,0.25)] border-2 border-red-800 animate-pulse transition duration-200 uppercase tracking-widest cursor-pointer"
       >
-        <span className="relative flex h-2.5 w-2.5">
+        <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
           {triggerData && (
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
           )}
-          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-red-500"></span>
         </span>
-        <Phone className="w-4 h-4 text-red-500" />
+        <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-red-500" />
         {triggerData ? "BUKA HP (D-MAIL AKTIF!)" : "BUKA HP"}
       </button>
     );
