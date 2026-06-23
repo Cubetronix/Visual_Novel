@@ -186,6 +186,11 @@ export default function NovelScreen({
       setDivergence(prev => prev + choice.divergenceChange!);
     }
 
+    if (choice.nextNodeId === "start" || choice.text.toLowerCase().includes("menu utama")) {
+      onExitToMenu();
+      return;
+    }
+
     setCurrentNodeId(choice.nextNodeId);
   };
 
@@ -517,18 +522,18 @@ export default function NovelScreen({
             </div>
           )}
 
-          {/* Quick status guide if phone triggers active */}
-          {currentNode.phoneTrigger && isTypingComplete && (
+          {/* Quick status guide if phone triggers active OR choices require phone */}
+          {(currentNode.phoneTrigger || currentNode.choices?.some(choice => choice.phoneRequired)) && isTypingComplete && (
             <div className="my-1.5 p-2 bg-red-950/20 border border-red-800/40 rounded flex items-center justify-between text-[10px] font-mono text-red-300 animate-pulse">
               <span className="flex items-center gap-1.5">
                 <ShieldAlert className="w-4 h-4 text-red-400 shrink-0" />
-                <span>{currentNode.phoneTrigger.promptText}</span>
+                <span>{currentNode.phoneTrigger ? currentNode.phoneTrigger.promptText : "Alur takdir kritis terdeteksi! Buka HP untuk mengakses koordinat alternatif!"}</span>
               </span>
               <button 
                 onClick={() => setPhoneOpen(true)}
-                className="px-2.5 py-1 bg-red-800 text-white border border-red-600 rounded text-[9px] font-bold hover:bg-red-700 cursor-pointer"
+                className="px-2.5 py-1 bg-red-800 text-white border border-red-600 rounded text-[9px] font-bold hover:bg-red-700 cursor-pointer flex-shrink-0"
               >
-                BUKA SEKARANG
+                BUKA HP
               </button>
             </div>
           )}
