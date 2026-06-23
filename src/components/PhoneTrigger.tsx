@@ -62,7 +62,7 @@ export default function PhoneTrigger({
       <button
         id="phone_trigger_button"
         onClick={onToggleOpen}
-        className="fixed top-1/2 -translate-y-1/2 right-3 sm:right-6 z-40 flex flex-col items-center justify-center gap-2 p-2.5 sm:px-4 sm:py-3.5 bg-red-950/90 hover:bg-red-900/90 text-white font-mono text-[9px] sm:text-xs font-bold rounded-sm shadow-[0_0_20px_rgba(239,68,68,0.4)] border-2 border-red-800/80 hover:border-red-500 animate-pulse transition-all duration-200 cursor-pointer w-11 sm:w-auto"
+        className="fixed bottom-32 right-3 sm:top-1/2 sm:-translate-y-1/2 sm:bottom-auto sm:right-6 z-40 flex flex-col items-center justify-center gap-2 p-2.5 sm:px-4 sm:py-3.5 bg-red-950/90 hover:bg-red-900/90 text-white font-mono text-[9px] sm:text-xs font-bold rounded-sm shadow-[0_0_20px_rgba(239,68,68,0.4)] border-2 border-red-800/80 hover:border-red-500 animate-pulse transition-all duration-200 cursor-pointer w-11 sm:w-auto"
       >
         <span className="relative flex h-2 w-2 bg-red-500 rounded-full">
           {triggerData && (
@@ -93,11 +93,11 @@ export default function PhoneTrigger({
   return (
     <div 
       id="phone_flip_overlay"
-      className="fixed inset-0 sm:inset-y-0 sm:left-auto sm:right-0 sm:w-96 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-all duration-300"
+      className="fixed inset-0 sm:inset-y-0 sm:left-auto sm:right-0 sm:w-96 bg-black/70 backdrop-blur-sm z-50 flex items-start sm:items-center justify-center overflow-y-auto p-4 transition-all duration-300"
     >
       <div 
         id="phone_hardware"
-        className="relative w-80 h-[580px] bg-[#0c0505] border-[3px] border-[#ff3b30]/65 rounded-md shadow-[0_0_35px_rgba(255,59,48,0.25)] p-4 flex flex-col justify-between"
+        className="relative w-80 h-[580px] my-auto bg-[#0c0505] border-[3px] border-[#ff3b30]/65 rounded-md shadow-[0_0_35px_rgba(255,59,48,0.25)] p-4 flex flex-col justify-between shrink-0"
       >
         {/* Flip-phone hinges top visual */}
         <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-20 h-4 bg-red-950 rounded-b-md border-x border-b border-red-900 z-10" />
@@ -112,11 +112,17 @@ export default function PhoneTrigger({
           {/* Status bar */}
           <div className="flex justify-between items-center pb-1 border-b border-[#00ff41]/20 font-mono text-[9px] text-[#00ff41]/60 select-none">
             <span>TERMINAL OS v1.0</span>
-            <span className="flex items-center gap-1">
-              {triggerData && <span className="animate-bounce mr-1 text-[#ff6b00]">📩</span>}
-              <span className="text-[10px]">📶 TRG</span>
-              <span>🔋 100%</span>
-            </span>
+            <div className="flex items-center gap-1.5">
+              {triggerData && <span className="animate-bounce text-[#ff6b00]">📩</span>}
+              <span className="text-[9px]">📶 TRG</span>
+              <span>100%</span>
+              <button 
+                onClick={() => { gameAudio.playSfx("click"); onClose(); }}
+                className="ml-1 text-[#ff3b30] hover:text-[#ff6b00] border border-red-950/40 hover:border-red-500 bg-red-950/20 rounded px-1.5 py-0.5 text-[8px] font-bold cursor-pointer transition uppercase"
+              >
+                TUTUP
+              </button>
+            </div>
           </div>
 
           {/* Screen Content */}
