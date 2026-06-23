@@ -327,7 +327,7 @@ export default function NovelScreen({
       {/* --- FLOATING UPPER HUD PANEL --- */}
       <nav 
         id="novel_hud_header"
-        className="relative z-10 w-full flex flex-col sm:flex-row items-center justify-between gap-3 px-6 py-4 bg-gradient-to-b from-black via-black/40 to-transparent"
+        className="relative z-10 w-full flex flex-col sm:flex-row items-center justify-between gap-2.5 px-4 py-2 sm:px-6 sm:py-4 bg-gradient-to-b from-black via-black/40 to-transparent"
       >
         {/* Nixie Divergence HUD tool */}
         <DivergenceMeter value={divergence} />
@@ -378,13 +378,13 @@ export default function NovelScreen({
       {/* --- ACTIVE CHARACTERS MULTI-BUST PANEL --- */}
       <div 
         id="character_visuals_panel"
-        className="relative z-10 flex-1 flex items-end justify-center px-4 sm:px-12 pointer-events-none"
+        className="relative z-10 flex-1 max-h-[25vh] sm:max-h-none flex items-end justify-center px-4 sm:px-12 pointer-events-none"
       >
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0a0a0c]/80 to-transparent z-0 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-24 sm:h-48 bg-gradient-to-t from-[#0a0a0c]/80 to-transparent z-0 pointer-events-none" />
 
-        <div className="w-full max-w-5xl flex justify-between items-end relative z-10">
+        <div className="w-full max-w-5xl h-full flex justify-between items-end relative z-10">
           {/* Left character box */}
-          <div className="w-1/2 flex justify-start items-end">
+          <div className="w-1/2 h-full flex justify-start items-end">
             {currentNode.characterLeft && currentNode.characterLeft !== "none" && (
               <CharacterAsset
                 name={currentNode.characterLeft}
@@ -395,7 +395,7 @@ export default function NovelScreen({
           </div>
 
           {/* Right character box */}
-          <div className="w-1/2 flex justify-end items-end">
+          <div className="w-1/2 h-full flex justify-end items-end">
             {currentNode.characterRight && currentNode.characterRight !== "none" && (
               <CharacterAsset
                 name={currentNode.characterRight}
@@ -410,7 +410,7 @@ export default function NovelScreen({
       {/* --- DIALOGUE AND DECISIONS CONSOLE BOX (BOTTOM) --- */}
       <div 
         id="dialogue_console_wrapper"
-        className="relative z-20 w-full bg-black/95 border-t border-[#00ff41]/30 px-4 py-5 sm:px-10 shadow-[0_0_50px_rgba(0,0,0,0.9)]"
+        className="relative z-20 w-full bg-black/95 border-t border-[#00ff41]/30 px-3 py-3 sm:py-5 sm:px-10 shadow-[0_0_50px_rgba(0,0,0,0.9)]"
       >
         <div className="max-w-4xl mx-auto flex flex-col gap-3.5 relative">
 
@@ -455,7 +455,7 @@ export default function NovelScreen({
           {/* Active typed dialog layout */}
           <div 
             onClick={handleNextClick}
-            className="min-h-[85px] py-1 cursor-pointer select-text"
+            className="min-h-[55px] sm:min-h-[85px] py-1 cursor-pointer select-text"
           >
             <p className="text-white text-xs sm:text-sm font-sans font-medium leading-relaxed">
               {displayedText}
@@ -469,7 +469,11 @@ export default function NovelScreen({
           {currentNode.choices && isTypingComplete && (
             <div 
               id="choices_container_list"
-              className="my-3 flex flex-col gap-2.5 animate-[fadeInUp_0.35s_ease-out_forwards]"
+              className="my-2 flex flex-col gap-2 max-h-[160px] sm:max-h-none overflow-y-auto pr-1 select-none animate-[fadeInUp_0.35s_ease-out_forwards]"
+              style={{
+                scrollbarWidth: "thin",
+                scrollbarColor: "#00ff41 rgba(0,0,0,0.3)"
+              }}
             >
               {currentNode.choices.map((choice, index) => {
                 const choiceLocked = choice.phoneRequired && !phoneOpen;
@@ -478,7 +482,7 @@ export default function NovelScreen({
                     key={index}
                     disabled={choiceLocked}
                     onClick={() => handleChoiceSelect(choice)}
-                    className={`w-full text-left p-3.5 border rounded-sm font-sans text-xs font-semibold flex items-center justify-between transition-all duration-150 relative ${
+                    className={`w-full text-left p-2.5 sm:p-3.5 border rounded-sm font-sans text-xs font-semibold flex items-center justify-between transition-all duration-150 relative ${
                       choiceLocked
                         ? "bg-black/90 border-stone-800 text-stone-600 cursor-not-allowed"
                         : choice.phoneRequired 
