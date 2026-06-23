@@ -14,6 +14,8 @@ import { Award, Zap } from "lucide-react";
 export default function App() {
   const [screen, setScreen] = useState<"menu" | "novel">("menu");
   const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>([]);
+  const [startNodeId, setStartNodeId] = useState<string>("start");
+  const [startDivergence, setStartDivergence] = useState<number>(1.130205);
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [showLoadModal, setShowLoadModal] = useState<boolean>(false);
   
@@ -47,39 +49,46 @@ export default function App() {
   };
 
   const handleUnlockAchievement = (id: string) => {
-    if (unlockedAchievements.includes(id)) return;
+    setUnlockedAchievements(prev => {
+      if (prev.includes(id)) return prev;
 
-    const updated = [...unlockedAchievements, id];
-    setUnlockedAchievements(updated);
-    localStorage.setItem("steins_gate_ach_v1", JSON.stringify(updated));
+      const updated = [...prev, id];
+      localStorage.setItem("steins_gate_ach_v1", JSON.stringify(updated));
 
-    // Retrieve achievement details
-    const found = INITIAL_ACHIEVEMENTS.find(ach => ach.id === id);
-    if (found) {
-      // Unlocked alert chime tutturu!
-      gameAudio.playSfx("tutturu_vo");
-      
-      // Trigger toast slide-in overlay
-      setActiveToast({ title: found.title, desc: found.description });
-      
-      // Auto fade-out after 4 seconds
-      setTimeout(() => {
-        setActiveToast(null);
-      }, 4000);
-    }
+      // Retrieve achievement details
+      const found = INITIAL_ACHIEVEMENTS.find(ach => ach.id === id);
+      if (found) {
+        // Unlocked alert chime tutturu!
+        gameAudio.playSfx("tutturu_vo");
+        
+        // Trigger toast slide-in overlay (safely trigger without blocks)
+        setTimeout(() => {
+          setActiveToast({ title: found.title, desc: found.description });
+        }, 50);
+        
+        // Auto fade-out after 4 seconds
+        setTimeout(() => {
+          setActiveToast(null);
+        }, 4000);
+      }
+
+      return updated;
+    });
   };
 
   const handleStartNewGame = () => {
+    setStartNodeId("start");
+    setStartDivergence(1.130205);
     setScreen("novel");
   };
 
   const handleLoadSlotDirect = (nodeId: string, divergence: number, unlocked: string[]) => {
     // Sync any loaded achievements
     unlocked.forEach(id => {
-      if (!unlockedAchievements.includes(id)) {
-        handleUnlockAchievement(id);
-      }
+      handleUnlockAchievement(id);
     });
+    setStartNodeId(nodeId);
+    setStartDivergence(divergence);
     setScreen("novel");
   };
 
@@ -103,8 +112,8 @@ export default function App() {
         />
       ) : (
         <NovelScreen
-          initialNodeId="start"
-          initialDivergence={0.571024}
+          initialNodeId={startNodeId}
+          initialDivergence={startDivergence}
           unlockedAchievements={unlockedAchievements}
           onUnlockAchievement={handleUnlockAchievement}
           onExitToMenu={() => {
