@@ -63,7 +63,7 @@ export default function MainMenu({
   return (
     <div 
       id="main_menu_viewport"
-      className="relative w-full min-h-screen bg-[#0a0a0c] text-[#e0e0e0] flex flex-col justify-between p-6 sm:p-12 overflow-hidden select-none"
+      className="relative w-full min-h-screen bg-[#0a0a0c] text-[#e0e0e0] flex flex-col justify-between p-4 sm:p-8 md:p-12 overflow-y-auto select-none"
     >
       {/* Absolute Background Mesh Grid */}
       <div className="absolute inset-0 bg-[radial-gradient(#1a1a1e_1px,transparent_1px)] [background-size:24px_24px] opacity-25 pointer-events-none z-0" />
@@ -95,7 +95,7 @@ export default function MainMenu({
       </header>
 
       {/* MAIN VIEWPORT BODY */}
-      <main className="relative flex-1 flex flex-col items-center justify-center z-10 py-12 max-w-5xl w-full mx-auto">
+      <main className="relative flex-1 flex flex-col items-center justify-center z-10 py-6 sm:py-12 max-w-5xl w-full mx-auto">
         
         {activeSubView === "none" && (
           <div className="flex flex-col items-center justify-center text-center max-w-lg">
@@ -161,9 +161,9 @@ export default function MainMenu({
 
         {/* --- ACHIEVEMENTS GALLERY VIEW --- */}
         {activeSubView === "achievements" && (
-          <div className="w-full max-w-2xl bg-[#0a0a0c]/95 border border-[#00ff41]/30 rounded-sm p-6 backdrop-blur-md flex flex-col justify-between h-[450px] shadow-[0_0_30px_rgba(0,255,65,0.15)] animate-[fadeInUp_0.3s_ease-out]">
+          <div className="w-full max-w-2xl bg-[#0a0a0c]/95 border border-[#00ff41]/30 rounded-sm p-4 sm:p-6 backdrop-blur-md flex flex-col justify-between min-h-[350px] sm:h-[450px] max-h-[85vh] shadow-[0_0_30px_rgba(0,255,65,0.15)] animate-[fadeInUp_0.3s_ease-out]">
             <div>
-              <div className="flex justify-between items-center border-b border-[#00ff41]/20 pb-3 mb-4">
+              <div className="flex justify-between items-center border-b border-[#00ff41]/20 pb-2.5 mb-3">
                 <h2 className="font-mono text-sm font-bold text-[#00ff41] uppercase flex items-center gap-2 tracking-wider">
                   <Award className="w-5 h-5 text-[#ff6b00]" />
                   <span>Daftar Enkripsi Milestone (Pencapaian)</span>
@@ -171,7 +171,7 @@ export default function MainMenu({
                 <span className="text-xs font-mono text-stone-400">Unlocked: {unlockedAchievements.length} / 6</span>
               </div>
 
-              <div id="ach_list_scroll" className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[300px] overflow-y-auto pr-1">
+              <div id="ach_list_scroll" className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[220px] sm:max-h-[300px] overflow-y-auto pr-1">
                 {INITIAL_ACHIEVEMENTS.map(ach => {
                   const unlocked = unlockedAchievements.includes(ach.id);
                   return (
@@ -211,16 +211,16 @@ export default function MainMenu({
 
         {/* --- HELP / PLAY GUIDE VIEW --- */}
         {activeSubView === "help" && (
-          <div className="w-full max-w-2xl bg-[#0a0a0c]/95 border border-[#00ff41]/30 rounded-sm p-6 backdrop-blur-md flex flex-col justify-between h-[450px] shadow-[0_0_30px_rgba(0,255,65,0.15)] animate-[fadeInUp_0.3s_ease-out]">
+          <div className="w-full max-w-2xl bg-[#0a0a0c]/95 border border-[#00ff41]/30 rounded-sm p-4 sm:p-6 backdrop-blur-md flex flex-col justify-between min-h-[350px] sm:h-[450px] max-h-[85vh] shadow-[0_0_30px_rgba(0,255,65,0.15)] animate-[fadeInUp_0.3s_ease-out]">
             <div>
-              <div className="flex justify-between items-center border-b border-[#00ff41]/20 pb-3 mb-4">
+              <div className="flex justify-between items-center border-b border-[#00ff41]/20 pb-2.5 mb-3">
                 <h2 className="font-mono text-sm font-bold text-[#00ff41] uppercase flex items-center gap-2">
                   <BookOpen className="w-5 h-5 text-[#00ff41]" />
                   <span>Panduan Komite Operasi Rahasia FGL</span>
                 </h2>
               </div>
 
-              <div className="space-y-3 max-h-[300px] overflow-y-auto font-mono text-[11px] leading-relaxed text-stone-300 pr-1 select-text">
+              <div className="space-y-3 max-h-[220px] sm:max-h-[300px] overflow-y-auto font-mono text-[11px] leading-relaxed text-stone-300 pr-1 select-text">
                 <div className="p-3 bg-black/60 border border-stone-900 rounded-sm">
                   <h3 className="text-[#00ff41] font-bold mb-1 uppercase text-xs">🚀 1. Mekanika Alur Narasi</h3>
                   <p className="font-sans text-stone-400">Langkah Anda ditentukan oleh pilihan tertulis di layar dialog. Namun, bumbu sejati Steins;Gate terletak pada trigger HP.</p>
