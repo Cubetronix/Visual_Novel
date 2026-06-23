@@ -161,36 +161,36 @@ export default function MainMenu({
 
         {/* --- ACHIEVEMENTS GALLERY VIEW --- */}
         {activeSubView === "achievements" && (
-          <div className="w-full max-w-2xl bg-[#0a0a0c]/95 border border-[#00ff41]/30 rounded-sm p-4 sm:p-6 backdrop-blur-md flex flex-col justify-between max-h-[80vh] shadow-[0_0_30px_rgba(0,255,65,0.15)] animate-[fadeInUp_0.3s_ease-out] overflow-hidden">
+          <div className="w-full max-w-2xl bg-[#0a0a0c]/95 border border-[#00ff41]/30 rounded-sm p-3.5 sm:p-6 backdrop-blur-md flex flex-col justify-between max-h-[90vh] sm:max-h-[80vh] shadow-[0_0_30px_rgba(0,255,65,0.15)] animate-[fadeInUp_0.3s_ease-out] overflow-hidden">
             <div className="flex-1 flex flex-col min-h-0">
-              <div className="flex justify-between items-center border-b border-[#00ff41]/20 pb-2.5 mb-3">
-                <h2 className="font-mono text-sm font-bold text-[#00ff41] uppercase flex items-center gap-2 tracking-wider">
-                  <Award className="w-5 h-5 text-[#ff6b00]" />
+              <div className="flex justify-between items-center border-b border-[#00ff41]/20 pb-2 mb-2.5">
+                <h2 className="font-mono text-xs sm:text-sm font-bold text-[#00ff41] uppercase flex items-center gap-1.5 tracking-wider">
+                  <Award className="w-4 h-4 sm:w-5 sm:h-5 text-[#ff6b00]" />
                   <span>Daftar Enkripsi Milestone (Pencapaian)</span>
                 </h2>
-                <span className="text-xs font-mono text-stone-400">Unlocked: {unlockedAchievements.length} / 6</span>
+                <span className="text-[10px] sm:text-xs font-mono text-stone-400">Unlocked: {unlockedAchievements.length} / 6</span>
               </div>
 
-              <div id="ach_list_scroll" className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 flex-1 overflow-y-auto pr-1 min-h-0">
+              <div id="ach_list_scroll" className="grid grid-cols-1 sm:grid-cols-2 gap-2 flex-1 overflow-y-auto pr-1 min-h-0 py-1">
                 {INITIAL_ACHIEVEMENTS.map(ach => {
                   const unlocked = unlockedAchievements.includes(ach.id);
                   return (
                     <div 
                       key={ach.id}
-                      className={`flex gap-3 p-3 rounded-sm border transition ${
+                      className={`flex gap-2.5 p-2.5 sm:p-3 rounded-sm border transition ${
                         unlocked 
-                          ? "bg-[#00ff41]/5 border-[#00ff41]/40 text-[#white]"
+                          ? "bg-[#00ff41]/5 border-[#00ff41]/40 text-white"
                           : "bg-black/50 border-stone-900 text-stone-500 opacity-60"
                       }`}
                     >
                       <div className="flex-shrink-0 mt-0.5">
                         {getAchievementIcon(ach.iconName, unlocked)}
                       </div>
-                      <div className="flex-col">
-                        <h4 className={`text-xs font-bold font-mono ${unlocked ? "text-[#00ff41]" : "text-stone-600"}`}>
+                      <div className="flex-1 min-w-0 flex flex-col">
+                        <h4 className={`text-[11px] sm:text-xs font-bold font-mono truncate ${unlocked ? "text-[#00ff41]" : "text-stone-600"}`}>
                           {unlocked ? ach.title : "?? LOCKED ??"}
                         </h4>
-                        <p className="text-[10px] font-sans mt-0.5 leading-relaxed text-stone-400">
+                        <p className="text-[9.5px] sm:text-[10px] font-sans mt-0.5 leading-relaxed text-stone-400">
                           {unlocked ? ach.description : "Kondisi pemicu tersembunyi di dalam putaran garis dunia."}
                         </p>
                       </div>
@@ -202,7 +202,7 @@ export default function MainMenu({
 
             <button
               onClick={() => handleSubToggle("achievements")}
-              className="mt-4 py-2 border border-[#00ff41]/30 hover:border-[#00ff41] text-[#00ff41] hover:bg-[#00ff41]/10 transition-all duration-150 cursor-pointer font-mono text-[11px] uppercase tracking-widest text-center rounded-sm"
+              className="mt-3.5 py-2 border border-[#00ff41]/30 hover:border-[#00ff41] text-[#00ff41] hover:bg-[#00ff41]/10 transition-all duration-150 cursor-pointer font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-center rounded-sm shrink-0"
             >
               Kembali ke Menu Awal
             </button>
@@ -211,36 +211,36 @@ export default function MainMenu({
 
         {/* --- HELP / PLAY GUIDE VIEW --- */}
         {activeSubView === "help" && (
-          <div className="w-full max-w-2xl bg-[#0a0a0c]/95 border border-[#00ff41]/30 rounded-sm p-4 sm:p-6 backdrop-blur-md flex flex-col justify-between max-h-[80vh] shadow-[0_0_30px_rgba(0,255,65,0.15)] animate-[fadeInUp_0.3s_ease-out] overflow-hidden">
+          <div className="w-full max-w-2xl bg-[#0a0a0c]/95 border border-[#00ff41]/30 rounded-sm p-3.5 sm:p-6 backdrop-blur-md flex flex-col justify-between max-h-[90vh] sm:max-h-[80vh] shadow-[0_0_30px_rgba(0,255,65,0.15)] animate-[fadeInUp_0.3s_ease-out] overflow-hidden">
             <div className="flex-1 flex flex-col min-h-0">
-              <div className="flex justify-between items-center border-b border-[#00ff41]/20 pb-2.5 mb-3">
-                <h2 className="font-mono text-sm font-bold text-[#00ff41] uppercase flex items-center gap-2">
-                  <BookOpen className="w-5 h-5 text-[#00ff41]" />
+              <div className="flex justify-between items-center border-b border-[#00ff41]/20 pb-2 mb-2.5">
+                <h2 className="font-mono text-xs sm:text-sm font-bold text-[#00ff41] uppercase flex items-center gap-1.5">
+                  <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-[#00ff41]" />
                   <span>Panduan Komite Operasi Rahasia FGL</span>
                 </h2>
               </div>
 
-              <div className="space-y-3 flex-1 overflow-y-auto font-mono text-[11px] leading-relaxed text-stone-300 pr-1 select-text min-h-0 py-1">
-                <div className="p-3 bg-black/60 border border-stone-900 rounded-sm">
-                  <h3 className="text-[#00ff41] font-bold mb-1 uppercase text-xs">🚀 1. Mekanika Alur Narasi</h3>
-                  <p className="font-sans text-stone-400">Langkah Anda ditentukan oleh pilihan tertulis di layar dialog. Namun, bumbu sejati Steins;Gate terletak pada trigger HP.</p>
+              <div className="space-y-2 flex-1 overflow-y-auto font-mono text-[10px] sm:text-[11px] leading-relaxed text-stone-300 pr-1 select-text min-h-0 py-1">
+                <div className="p-2.5 bg-black/60 border border-stone-900 rounded-sm">
+                  <h3 className="text-[#00ff41] font-bold mb-1 uppercase text-[10.5px] sm:text-xs">🚀 1. Mekanika Alur Narasi</h3>
+                  <p className="font-sans text-stone-400 text-[10px] sm:text-[11px]">Langkah Anda ditentukan oleh pilihan tertulis di layar dialog. Namun, bumbu sejati Steins;Gate terletak pada trigger HP.</p>
                 </div>
 
-                <div className="p-3 bg-black/60 border border-stone-900 rounded-sm">
-                  <h3 className="text-[#ff6b00] font-bold mb-1 uppercase text-xs">📱 2. Pemicu HP (Phone Trigger)</h3>
-                  <p className="font-sans text-stone-400">Pada adegan krusial, sebuah tombol <b>BUKA HP</b> berwarna merah akan berkerlap-kerlip. Agar takdir berbelok ke garis dunia lain, Anda diwajibkan membuka telepon seluler merah Okabe, memilih inbox/compose, lalu menekan tombol <b>TRANSMIT D-MAIL</b> untuk merekayasa masa lampau kuantum. Mengabaikannya akan mempertahankan garis konvergensi maut.</p>
+                <div className="p-2.5 bg-black/60 border border-stone-900 rounded-sm">
+                  <h3 className="text-[#ff6b00] font-bold mb-1 uppercase text-[10.5px] sm:text-xs">📱 2. Pemicu HP (Phone Trigger)</h3>
+                  <p className="font-sans text-stone-400 text-[10px] sm:text-[11px]">Pada adegan krusial, sebuah tombol <b>BUKA HP</b> berwarna merah akan berkerlap-kerlip. Agar takdir berbelok ke garis dunia lain, Anda diwajibkan membuka telepon seluler merah Okabe, memilih inbox/compose, lalu menekan tombol <b>TRANSMIT D-MAIL</b> untuk merekayasa masa lampau kuantum. Mengabaikannya akan mempertahankan garis konvergensi maut.</p>
                 </div>
 
-                <div className="p-3 bg-black/60 border border-stone-900 rounded-sm">
-                  <h3 className="text-[#00ff41] font-bold mb-1 uppercase text-xs">🌀 3. Pencarian Gerbang Steins Gate</h3>
-                  <p className="font-sans text-stone-400">Terapkan logika eksperimen gila! Menyelamatkan Mayuri saja akan melenyapkan Kurisu (Dunia Alpha). Menyelamatkan Kurisu saja akan menghapus Mayuri (Dunia Beta). Temukan trik visual rahasia ketiga melalui menu HP ekstrim di garis akhir untuk melontarkan dunia menuju takdir legendaris <b>Steins Gate</b>.</p>
+                <div className="p-2.5 bg-black/60 border border-stone-900 rounded-sm">
+                  <h3 className="text-[#00ff41] font-bold mb-1 uppercase text-[10.5px] sm:text-xs">🌀 3. Pencarian Gerbang Steins Gate</h3>
+                  <p className="font-sans text-stone-400 text-[10px] sm:text-[11px]">Terapkan logika eksperimen gila! Menyelamatkan Mayuri saja akan melenyapkan Kurisu (Dunia Alpha). Menyelamatkan Kurisu saja akan menghapus Mayuri (Dunia Beta). Temukan trik visual rahasia ketiga melalui menu HP ekstrim di garis akhir untuk melontarkan dunia menuju takdir legendaris <b>Steins Gate</b>.</p>
                 </div>
               </div>
             </div>
 
             <button
               onClick={() => handleSubToggle("help")}
-              className="mt-4 py-2 border border-[#00ff41]/30 hover:border-[#00ff41] text-[#00ff41] hover:bg-[#00ff41]/10 transition-all duration-150 cursor-pointer font-mono text-[11px] uppercase tracking-widest text-center rounded-sm"
+              className="mt-3.5 py-2 border border-[#00ff41]/30 hover:border-[#00ff41] text-[#00ff41] hover:bg-[#00ff41]/10 transition-all duration-150 cursor-pointer font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-center rounded-sm shrink-0"
             >
               Kembali ke Menu Awal
             </button>
