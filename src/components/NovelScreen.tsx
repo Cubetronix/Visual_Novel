@@ -68,6 +68,9 @@ export default function NovelScreen({
     
     // Auto-update log history
     setTextLog(prev => {
+      if (currentNodeId === "start") {
+        return [{ speaker: currentNode.speaker, text: currentNode.text }];
+      }
       const exists = prev.some(l => l.text === currentNode.text && l.speaker === currentNode.speaker);
       if (exists) return prev;
       return [...prev, { speaker: currentNode.speaker, text: currentNode.text }];
@@ -202,6 +205,11 @@ export default function NovelScreen({
     setIsAutoPlay(false);
     setCurrentNodeId(nodeId);
     setDivergence(savedDivergence);
+    
+    // Clear and reset log history to the loaded node
+    const loadedNode = storyData[nodeId] || storyData["start"];
+    setTextLog([{ speaker: loadedNode.speaker, text: loadedNode.text }]);
+
     // Sync Achievements
     unlocked.forEach(id => onUnlockAchievement(id));
   };
@@ -535,6 +543,11 @@ export default function NovelScreen({
         onClose={() => setPhoneOpen(false)}
         isOpen={phoneOpen}
         onToggleOpen={() => setPhoneOpen(prev => !prev)}
+        phoneChoices={currentNode.choices?.filter(choice => choice.phoneRequired)}
+        onSelectChoice={(choice) => {
+          handleChoiceSelect(choice);
+          setPhoneOpen(false);
+        }}
       />
 
       {/* --- BACKLOG DIALOGUE HISTORY DRAWER (LOG) --- */}
