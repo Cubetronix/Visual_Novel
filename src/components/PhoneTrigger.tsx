@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Phone, Mail, X, CornerDownLeft, ArrowLeft, Send } from "lucide-react";
-import { PhoneTriggerData, DMailOption } from "../types";
+import { PhoneTriggerData, DMailOption, Choice } from "../types";
 import { gameAudio } from "./AudioEngine";
 
 interface PhoneTriggerProps {
@@ -14,6 +14,8 @@ interface PhoneTriggerProps {
   onClose: () => void;
   isOpen: boolean;
   onToggleOpen: () => void;
+  phoneChoices?: Choice[];
+  onSelectChoice?: (choice: Choice) => void;
 }
 
 export default function PhoneTrigger({
@@ -21,7 +23,9 @@ export default function PhoneTrigger({
   onSendDMail,
   onClose,
   isOpen,
-  onToggleOpen
+  onToggleOpen,
+  phoneChoices,
+  onSelectChoice
 }: PhoneTriggerProps) {
   const [activeTab, setActiveTab] = useState<"desktop" | "contacts" | "inbox" | "dmail_draft" | "sent">("desktop");
   const [selectedMail, setSelectedMail] = useState<DMailOption | null>(null);
@@ -58,16 +62,30 @@ export default function PhoneTrigger({
       <button
         id="phone_trigger_button"
         onClick={onToggleOpen}
-        className="fixed top-20 sm:top-auto sm:bottom-24 right-3 sm:right-6 z-40 flex items-center gap-1.5 px-3 py-2 sm:px-5 sm:py-3.5 bg-red-950/90 hover:bg-red-900/80 text-white font-mono text-[9px] sm:text-xs font-bold rounded-sm shadow-[0_0_15px_rgba(239,68,68,0.25)] border-2 border-red-800 animate-pulse transition duration-200 uppercase tracking-widest cursor-pointer"
+        className="fixed top-1/2 -translate-y-1/2 right-3 sm:right-6 z-40 flex flex-col items-center justify-center gap-2 p-2.5 sm:px-4 sm:py-3.5 bg-red-950/90 hover:bg-red-900/90 text-white font-mono text-[9px] sm:text-xs font-bold rounded-sm shadow-[0_0_20px_rgba(239,68,68,0.4)] border-2 border-red-800/80 hover:border-red-500 animate-pulse transition-all duration-200 cursor-pointer w-11 sm:w-auto"
       >
-        <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
+        <span className="relative flex h-2 w-2 bg-red-500 rounded-full">
           {triggerData && (
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
           )}
-          <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-red-500"></span>
         </span>
-        <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-red-500" />
-        {triggerData ? "BUKA HP (D-MAIL AKTIF!)" : "BUKA HP"}
+        <Phone className="w-4 h-4 text-red-500 shrink-0" />
+        <span className="hidden sm:inline">
+          {triggerData ? "BUKA HP (D-MAIL AKTIF!)" : "BUKA HP"}
+        </span>
+        <span className="sm:hidden text-[7px] leading-none text-center tracking-tighter uppercase font-bold flex flex-col items-center">
+          {triggerData ? (
+            <>
+              <span>D-MAIL</span>
+              <span className="text-red-400 font-extrabold mt-0.5 animate-bounce">AKTIF</span>
+            </>
+          ) : (
+            <>
+              <span>BUKA</span>
+              <span className="font-extrabold mt-0.5">HP</span>
+            </>
+          )}
+        </span>
       </button>
     );
   }
@@ -111,6 +129,32 @@ export default function PhoneTrigger({
                   <div className="font-bold text-[9px] tracking-wider text-[#00ff41]/60">FUTURE GADGET LAB</div>
                   <div className="text-[13px] font-bold text-white mt-1">D-Mail Terminal OS</div>
                 </div>
+
+                {/* SPECIAL STEINS GATE PHONE REQUIRED CHOICES DIRECT INTERACTIVE TRIGGER */}
+                {phoneChoices && phoneChoices.length > 0 && (
+                  <div className="my-1.5 p-1.5 border border-red-500 bg-red-950/40 rounded-sm animate-pulse flex flex-col gap-1 shadow-[0_0_10px_rgba(239,68,68,0.3)]">
+                    <div className="flex items-center gap-1 text-red-500 font-mono text-[8px] font-bold uppercase">
+                      <span className="relative flex h-1.5 w-1.5 bg-red-500 rounded-full">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                      </span>
+                      <span>ALUR TAKDIR TERDETEKSI</span>
+                    </div>
+                    {phoneChoices.map((choice, i) => (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          gameAudio.playSfx("laser");
+                          if (onSelectChoice) {
+                            onSelectChoice(choice);
+                          }
+                        }}
+                        className="w-full text-center py-1 bg-red-800 hover:bg-red-700 border border-red-500 text-white rounded-sm font-sans text-[8px] font-extrabold cursor-pointer transition-all uppercase"
+                      >
+                        ⚡ {choice.text.replace("[HP PRESTIGE] ", "")}
+                      </button>
+                    ))}
+                  </div>
+                )}
 
                 {dialNumber ? (
                   <div className="text-right pr-2 text-md font-bold py-1 border-b border-[#00ff41]/20 text-white">
