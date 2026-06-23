@@ -50,16 +50,16 @@ export default function DivergenceMeter({ value, onSteinerComplete }: Divergence
   return (
     <div 
       id="divergence_meter_root"
-      className="flex flex-col items-center justify-center py-2.5 px-5 bg-black/95 border border-[#00ff41]/20 rounded-sm shadow-[0_0_20px_rgba(0,255,65,0.1)] backdrop-blur-md"
+      className="flex flex-col items-center justify-center py-1 sm:py-2.5 px-2.5 sm:px-5 bg-black/95 border border-[#00ff41]/20 rounded-sm shadow-[0_0_20px_rgba(0,255,65,0.1)] backdrop-blur-md"
     >
-      <div className="flex items-center gap-1.5 font-mono">
+      <div className="flex items-center gap-1 sm:gap-1.5 font-mono">
         {/* Nixie tubes wrapper */}
         {displayedValue.split("").map((char, index) => {
           if (char === ".") {
             return (
               <span 
                 key={index} 
-                className="text-[#ff6b00] text-lg sm:text-2xl font-bold animate-pulse mx-0.5"
+                className="text-[#ff6b00] text-sm sm:text-2xl font-bold animate-pulse mx-0.5"
                 style={{ textShadow: "0 0 10px rgba(255, 107, 0, 0.9)" }}
               >
                 .
@@ -69,7 +69,7 @@ export default function DivergenceMeter({ value, onSteinerComplete }: Divergence
           return (
             <div 
               key={index} 
-              className={`relative flex items-center justify-center w-8 h-12 sm:w-10 sm:h-16 rounded-sm bg-gradient-to-b from-black to-[#050508] border border-stone-900 shadow-inner overflow-hidden ${
+              className={`relative flex items-center justify-center w-5 h-8 sm:w-10 sm:h-16 rounded-sm bg-gradient-to-b from-black to-[#050508] border border-stone-900 shadow-inner overflow-hidden ${
                 isScrambling ? "animate-bounce" : ""
               }`}
             >
@@ -78,13 +78,13 @@ export default function DivergenceMeter({ value, onSteinerComplete }: Divergence
               <div className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-amber-500/10 pointer-events-none" />
               
               {/* Glowing inactive filament backdrop */}
-              <span className="absolute text-[#ff6b00]/5 text-2xl sm:text-4xl font-extrabold select-none">
+              <span className="absolute text-[#ff6b00]/5 text-sm sm:text-4xl font-extrabold select-none">
                 8
               </span>
-
+ 
               {/* Ultra glowing active letter */}
               <span 
-                className="relative text-2xl sm:text-4xl font-extrabold text-[#ff6b00] select-none z-10 transition-all duration-75"
+                className="relative text-sm sm:text-4xl font-extrabold text-[#ff6b00] select-none z-10 transition-all duration-75"
                 style={{
                   color: "#ff6b00",
                   textShadow: isScrambling 
@@ -98,11 +98,11 @@ export default function DivergenceMeter({ value, onSteinerComplete }: Divergence
             </div>
           );
         })}
-
+ 
         {/* Units badge % */}
-        <div className="flex flex-col justify-end h-12 sm:h-16 pb-1 pl-1">
+        <div className="flex flex-col justify-end h-8 sm:h-16 pb-1 pl-1">
           <span 
-            className="text-xs font-bold text-[#ff6b00]"
+            className="text-[10px] sm:text-xs font-bold text-[#ff6b00]"
             style={{ textShadow: "0 0 5px rgba(255, 107, 0, 0.3)" }}
           >
             %
@@ -110,7 +110,7 @@ export default function DivergenceMeter({ value, onSteinerComplete }: Divergence
         </div>
       </div>
       
-      <div className="mt-1 text-[9px] font-mono tracking-widest text-[#00ff41]/60 uppercase select-none">
+      <div className="mt-0.5 sm:mt-1 text-[7px] sm:text-[9px] font-mono tracking-widest text-[#00ff41]/60 uppercase select-none">
         WORLDLINE DIVERGENCE METER
       </div>
     </div>
